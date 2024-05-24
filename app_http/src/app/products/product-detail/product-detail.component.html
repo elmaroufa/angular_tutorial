@@ -11,5 +11,13 @@
     </p>
     <p *ngSwitchDefault>Product is for general use</p>
   </div>
+
+  <input placeholder="New price" #price/>
+  <button (click)="changePrice(product, price.valueAsNumber)">
+    Change
+  </button>
+
+  <button class="delete" (click)="remove(product)">Delete</button>
+  <br/>
   <button (click)="buy()">Buy Now</button>
 </div>

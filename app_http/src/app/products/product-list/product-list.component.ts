@@ -44,4 +44,13 @@ export class ProductListComponent implements OnDestroy, OnInit, AfterViewInit {
     });
   }
 
+  onAdd(product : Product){
+    this.products.push(product);
+  }
+  
+  onDelete() {
+    this.products = this.products.filter(product => product !== this.
+    selectedProduct);
+    this.selectedProduct = undefined;
+    }
 }
