@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ProductsModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

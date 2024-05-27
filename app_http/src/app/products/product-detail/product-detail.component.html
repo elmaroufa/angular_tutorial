@@ -1,4 +1,4 @@
-<div *ngIf="product">
+<div *ngIf="product$ | async as product">
   <h2>Product Details</h2>
   <h3>{{product.name}}</h3>
   <span>{{product.price | currency:'EUR'}}</span>
@@ -19,5 +19,5 @@
 
   <button class="delete" (click)="remove(product)">Delete</button>
   <br/>
-  <button (click)="buy()">Buy Now</button>
+  <button *ngIf="authService.isLoggedIn" (click)="buy()">Buy Now</button>
 </div>

@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
+import { AuthService } from '../../auth/auth.service';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -11,32 +14,28 @@ export class ProductDetailComponent implements OnChanges {
   @Input() product: Product | undefined;
   @Output() bought = new EventEmitter();
   @Output() deleted = new EventEmitter();
+  product$: Observable<Product> | undefined;
+  @Input() id = -1;
   
-  constructor(private productService: ProductsService){}
+  constructor(private productService: ProductsService, public authService: AuthService){}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const product = changes['product'];
-    if (!product.isFirstChange()) {
-      const oldValue = product.previousValue.name;
-      const newValue = product.currentValue.name;
-      console.log(`Product changed from ${oldValue} to ${newValue}`);
+  ngOnChanges(): void {
+    this.product$ = this.productService.getProduct(this.id);
     }
-  }
-
+  
   buy() {
     this.bought.emit();
   }
 
-  changePrice(product : Product, price: number){
-    this.productService.updateProduct(product.id, price).subscribe(
-      () => {
-        alert(` the product with name ${product.name} was changed`)
-      }
-    )
+  changePrice(product: Product, price: number) {
+    this.productService.updateProduct(product.id, price).subscribe(() => {
+      alert(`The price of ${product.name} was changed!`);
+    });
   }
-  remove(product:Product){
-    this.productService.deleteProduct(product.id).subscribe(
-         () => {this.deleted.emit();}  
-    );
+
+  remove(product: Product) {
+    this.productService.deleteProduct(product.id).subscribe(() => {
+      this.deleted.emit();
+    });
   }
 }
