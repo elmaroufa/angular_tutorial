@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Product } from './product';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 interface ProductDTO {
   id: number;
@@ -43,7 +43,12 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<ProductDTO[]>(this.productsUrl).pipe(
+
+    const options = {
+      headers: new HttpHeaders({ Authorization: 'myAuthToken' })
+      };
+
+    return this.http.get<ProductDTO[]>(this.productsUrl, options).pipe(
       map(products => products.map(product => {
         console.log(product);
         return this.convertToProduct(product)

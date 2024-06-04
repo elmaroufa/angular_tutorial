@@ -12,6 +12,8 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(): Observable<string> {
+
+    
     return this.http.post<string>('https://fakestoreapi.com/auth/login',{
       username : 'david_r',
       password : '3478*#54'
