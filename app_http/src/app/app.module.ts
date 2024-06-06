@@ -17,8 +17,8 @@ import { CartComponent } from './cart/cart.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     ProductsModule,
+    AppRoutingModule,
     HttpClientModule,
     AuthModule,
   ],
