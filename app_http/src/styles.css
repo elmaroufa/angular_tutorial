@@ -58,3 +58,6 @@
   .invalid {
     border-bottom: solid red;
   }
+  .active {
+    color: black;
+    }

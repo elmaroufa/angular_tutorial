@@ -8,12 +8,14 @@ import { AuthModule } from './auth/auth.module';
 import { AuthInterceptor } from './auth/auth2.interceptor';
 import { authInterceptor } from './auth/auth.interceptor';
 import { CartComponent } from './cart/cart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CartComponent
+    CartComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

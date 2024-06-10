@@ -57,8 +57,7 @@ export class ProductsService {
   }
 
   getProduct(id: number): Observable<Product> {
-    return this.http.get<ProductDTO>('${this.productsUrl}/${id}').
-    pipe(
+    return this.http.get<ProductDTO>(`${this.productsUrl}/${id}`).pipe(
     map(product => this.convertToProduct(product))
     )
   }
