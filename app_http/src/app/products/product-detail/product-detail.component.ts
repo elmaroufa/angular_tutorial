@@ -3,7 +3,7 @@ import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -22,11 +22,11 @@ export class ProductDetailComponent implements OnChanges, OnInit {
     private route : ActivatedRoute){}
 
   ngOnInit(): void {
-    this.product$ = this.route.paramMap.pipe(
-      switchMap(params => {
-        return this.productService.getProduct(Number(params.get('id')));
-      })
-    );
+    // const id = this.product$ = this.route.snapshot.params['id'];
+    // this.product$ = this.productService.getProduct(id);
+    this.product$ = this.route.data.pipe(
+      switchMap(data => of(data['product']))
+      );
   }
 
   ngOnChanges(): void {
