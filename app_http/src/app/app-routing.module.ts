@@ -14,7 +14,7 @@ const routes: Routes = [
   canDeactivate : [checkoutGuard]
   },
   { path : 'about', 
-    loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
+    loadComponent: () => import('./about/about-info/about-info.component').then(m => m.AboutInfoComponent),
   },
   { path: '**' , component: PageNotFoundComponent}
 ];
