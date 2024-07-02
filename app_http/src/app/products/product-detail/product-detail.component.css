@@ -2,6 +2,10 @@ input {
     margin-left: 5px;
 }
 
+form {
+    display: inline;
+}
+
 .delete {
 background-color: lightcoral;
 color: white;

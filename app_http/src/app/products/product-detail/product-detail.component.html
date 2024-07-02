@@ -12,10 +12,13 @@
     <p *ngSwitchDefault>Product is for general use</p>
   </div>
 
-  <input placeholder="New price" #price/>
-  <button (click)="changePrice(product, price.valueAsNumber)">
-    Change
-  </button>
+  <!-- <input placeholder="New price" #price/> -->
+  <form (ngSubmit)="changePrice(product, price!)">
+    <input placeholder="New price" name="price" [(ngModel)]="price" />
+    <button type="submit">
+      Change
+    </button>
+  </form>
 
   <button class="delete" (click)="remove(product)">Delete</button>
   <br/>
