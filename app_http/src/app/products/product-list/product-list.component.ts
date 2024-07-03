@@ -25,7 +25,7 @@ export class ProductListComponent implements OnDestroy, OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getProducts();
-    console.log(this.products$);
+    console.log(this.products);
   }
 
   ngAfterViewInit(): void {
