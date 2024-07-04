@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-create',
@@ -13,12 +13,23 @@ export class ProductCreateComponent {
   @Output() added = new EventEmitter<Product>();
 
   productForm = new FormGroup({
-    name: new FormControl('', { nonNullable: true }),
+    name: new FormControl('', { 
+      nonNullable: true,
+      validators : Validators.required
+    
+    }),
     price: new FormControl<number | undefined>(undefined, {
-    nonNullable: true })
+    nonNullable: true,
+    validators : [Validators.required, Validators.min(2)]
+  })
     });
 
-  constructor(private productsService: ProductsService){
+  // productForm : FormGroup<{
+  //   name : FormControl<string>,
+  //   pricee : FormControl<number | undefined>
+  // }> | undefined
+
+  constructor(private productsService: ProductsService, private builder : FormBuilder){
 
   }
 
@@ -31,5 +42,13 @@ export class ProductCreateComponent {
 
   get name() { return this.productForm.controls.name}
   get price() { return this.productForm.controls.price}
+
+  // private buildForm() {
+  //   this.productForm = this.builder.nonNullable.group({
+  //   name: this.builder.nonNullable.control(''),
+  //   price: this.builder.nonNullable.control<number |
+  //   undefined>(undefined, {})
+  //   });
+  // }
 
 }
