@@ -22,5 +22,5 @@
 
   <button class="delete" (click)="remove(product)">Delete</button>
   <br/>
-  <button *ngIf="authService.isLoggedIn" (click)="buy()">Buy Now</button>
+  <button *ngIf="authService.isLoggedIn" (click)="buy(product)">Buy Now</button>
 </div>

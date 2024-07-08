@@ -4,6 +4,7 @@ import { ProductsService } from '../products.service';
 import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap, of } from 'rxjs';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -20,7 +21,7 @@ export class ProductDetailComponent implements OnChanges, OnInit {
   price : number | undefined;
   
   constructor(private productService: ProductsService, public authService: AuthService,
-    private route : ActivatedRoute){}
+    private route : ActivatedRoute, private cartService: CartService){}
 
   ngOnInit(): void {
     // const id = this.product$ = this.route.snapshot.params['id'];
@@ -34,8 +35,9 @@ export class ProductDetailComponent implements OnChanges, OnInit {
     this.product$ = this.productService.getProduct(this.id);
     }
   
-  buy() {
-    this.bought.emit();
+  buy(product: Product) {
+    // this.bought.emit();
+    this.cartService.addProduct(product);
   }
 
   changePrice(product: Product, price: number) {

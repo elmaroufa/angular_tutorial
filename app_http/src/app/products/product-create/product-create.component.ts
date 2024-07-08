@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { FormControl, FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
+import { priceRangeValidator } from './price-range.directive';
 
 @Component({
   selector: 'app-product-create',
@@ -20,7 +21,7 @@ export class ProductCreateComponent {
     }),
     price: new FormControl<number | undefined>(undefined, {
     nonNullable: true,
-    validators : [Validators.required, Validators.min(2)]
+    validators : [Validators.required, priceRangeValidator()]
   })
     });
 
