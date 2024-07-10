@@ -10,6 +10,7 @@ import { authInterceptor } from './auth/auth.interceptor';
 import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     AuthModule,
     ReactiveFormsModule,
+    CommonModule
     
   ],
   providers: [
