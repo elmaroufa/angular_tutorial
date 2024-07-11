@@ -11,6 +11,10 @@ import { CartComponent } from './cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 
 @NgModule({
@@ -26,7 +30,10 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     AuthModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatButtonToggleModule
     
   ],
   providers: [
