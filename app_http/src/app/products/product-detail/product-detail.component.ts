@@ -3,8 +3,10 @@ import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap, of } from 'rxjs';
+import { Observable, switchMap, of, filter } from 'rxjs';
 import { CartService } from '../../cart.service';
+import { PriceComponent } from '../price/price.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-detail',
@@ -20,8 +22,12 @@ export class ProductDetailComponent implements OnChanges, OnInit {
   @Input() id = -1;
   price : number | undefined;
   
-  constructor(private productService: ProductsService, public authService: AuthService,
-    private route : ActivatedRoute, private cartService: CartService){}
+  constructor(private productService: ProductsService, 
+    public authService: AuthService,
+    private route : ActivatedRoute, 
+    private cartService: CartService,
+    private dialog : MatDialog
+    ){}
 
   ngOnInit(): void {
     // const id = this.product$ = this.route.snapshot.params['id'];
@@ -40,8 +46,11 @@ export class ProductDetailComponent implements OnChanges, OnInit {
     this.cartService.addProduct(product);
   }
 
-  changePrice(product: Product, price: number) {
-    this.productService.updateProduct(product.id, price).subscribe(() => {
+  changePrice(product: Product) {
+    this.dialog.open(PriceComponent).afterClosed().pipe(
+         filter(price => !!price),
+         switchMap(price => this.productService.updateProduct(product.id, price))
+    ).subscribe(() => {
       alert(`The price of ${product.name} was changed!`);
     });
   }

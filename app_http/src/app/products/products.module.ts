@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PriceComponent } from './price/price.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     SortPipe,
     ProductViewComponent,
     ProductCreateComponent,
+    PriceComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +39,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     BrowserAnimationsModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
     
   ],
   exports: [ProductListComponent]
