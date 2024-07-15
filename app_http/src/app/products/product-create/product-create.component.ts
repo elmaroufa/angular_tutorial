@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { FormControl, FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { priceRangeValidator } from './price-range.directive';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-create',
@@ -14,7 +15,10 @@ export class ProductCreateComponent implements OnInit{
 
   showPriceRangeHint = false;
   @Output() added = new EventEmitter<Product>();
-
+  products : Product[] = [];
+  products$: Observable<Product[]> | undefined;
+  categories = ['Hardware', 'Computers', 'Clothing', 'Software'];
+  
   productForm = new FormGroup({
     name: new FormControl('', { 
       nonNullable: true,
@@ -41,6 +45,15 @@ export class ProductCreateComponent implements OnInit{
           this.showPriceRangeHint = price > 1 && price < 10000
         }
     });
+
+    this.productsService.getProducts().subscribe(products => {
+       this.products = products;
+    });
+
+    this.products$ = this.name.valueChanges.pipe(
+      map(name => this.products.filter(product => product.name.
+      startsWith(name)))
+      );
   }
 
   createProduct(){
