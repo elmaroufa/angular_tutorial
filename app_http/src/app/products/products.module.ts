@@ -17,6 +17,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PriceComponent } from './price/price.component';
+import {MatCardModule} from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -40,8 +46,12 @@ import { PriceComponent } from './price/price.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
-    
+    MatDialogModule,
+    MatCardModule,
+    DragDropModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
   ],
   exports: [ProductListComponent]
 })

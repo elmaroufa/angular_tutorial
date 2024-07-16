@@ -3,6 +3,9 @@ import { Subscription, Observable } from 'rxjs';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +18,10 @@ export class ProductListComponent implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild(ProductDetailComponent) productDetail: ProductDetailComponent | undefined;
   products$: Observable<Product[]> | undefined;
   private productsSub: Subscription | undefined;
-  products : Product[] = [];
+  products = new MatTableDataSource<Product>([]);
+  columnNames = ['name', 'price'];
+  @ViewChild(MatSort) sort: MatSort | null = null;
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   constructor(private productService: ProductsService) {}
 
@@ -40,17 +46,18 @@ export class ProductListComponent implements OnDestroy, OnInit, AfterViewInit {
 
   private getProducts() {
     this.productService.getProducts().subscribe(products => {
-       this.products = products;
+      this.products = new MatTableDataSource(products);
+      this.products.sort = this.sort;
+      this.products.paginator = this.paginator;
     });
   }
 
   onAdd(product : Product){
-    this.products.push(product);
+    this.products.data.push(product);
   }
   
   onDelete() {
-    this.products = this.products.filter(product => product !== this.
-    selectedProduct);
+    this.products.data = this.products.data.filter(product => product !== this.selectedProduct);
     this.selectedProduct = undefined;
     }
 }
