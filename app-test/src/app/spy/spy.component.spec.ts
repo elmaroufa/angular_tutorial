@@ -27,6 +27,29 @@ describe('SpyComponent', () => {
         expect(spy).toHaveBeenCalledWith('My Angular app');
       });
     });
-    
+
+    describe('with spy object', () => {
+        let titleSPy : jasmine.SpyObj<Title>;
+
+        beforeEach(() => {
+          titleSPy = jasmine.createSpyObj('Title', ['getTitle', 'setTitle']);
+          titleSPy.getTitle.and.returnValue('My title');
+
+          TestBed.configureTestingModule({
+            declarations : [ SpyComponent ],
+            providers: [
+              { provide : Title, useValue: titleSPy }
+            ]
+          });
+          fixture = TestBed.createComponent(SpyComponent);
+          component = fixture.componentInstance;
+       });
+
+       it('should get the title', () => {
+           fixture.detectChanges();
+           expect(fixture.nativeElement.textContent).toContain('My title');
+       })
+
+    }); 
 });
 
