@@ -6,21 +6,32 @@ import { AppComponent } from './app.component';
 import { StubComponent } from './stub/stub.component';
 import { SpyComponent } from './spy/spy.component';
 import { AsyncComponent } from './async/async.component';
+import { BindingsComponent } from './bindings/bindings.component';
+import { TestHostComponent } from './bindings/bindings.component.spec';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     StubComponent,
     SpyComponent,
-    AsyncComponent
+    AsyncComponent,
+    BindingsComponent,
+    TestHostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    
+    BrowserAnimationsModule,
+    MatButtonModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
