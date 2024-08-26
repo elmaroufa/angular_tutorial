@@ -12,6 +12,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListpipePipe } from './listpipe.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SpyComponent,
     AsyncComponent,
     BindingsComponent,
-    TestHostComponent
+    TestHostComponent,
+    ListpipePipe
   ],
   imports: [
     BrowserModule,
