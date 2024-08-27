@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListpipePipe } from './listpipe.pipe';
+import { CopyrightDirective } from './copyright.directive';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ListpipePipe } from './listpipe.pipe';
     AsyncComponent,
     BindingsComponent,
     TestHostComponent,
-    ListpipePipe
+    ListpipePipe,
+    CopyrightDirective,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
