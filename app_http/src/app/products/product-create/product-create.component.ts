@@ -18,7 +18,6 @@ export class ProductCreateComponent implements OnInit{
   products : Product[] = [];
   products$: Observable<Product[]> | undefined;
   categories = ['Hardware', 'Computers', 'Clothing', 'Software'];
-  
   productForm = new FormGroup({
     name: new FormControl('', { 
       nonNullable: true,
